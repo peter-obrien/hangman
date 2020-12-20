@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <form action="submit" id="wordForm">
+        <div class="enterMode form-group">
+            <label for="wordToGuess">Enter a word:</label>
+            <input type="text" id="wordToGuess" class="form-control" pattern="[a-zA-z]*">
+        </div>
+    </form>
+    <div id="guessMode" class="d-none">
+        <form>
+            <div id="wordContainer" class="row form-group">
+            </div>
+            <div id="letterButtons row">
+                <button class="letter btn btn-sm btn-primary">A</button>
+                <button class="letter btn btn-sm btn-primary">B</button>
+                <button class="letter btn btn-sm btn-primary">C</button>
+                <button class="letter btn btn-sm btn-primary">D</button>
+                <button class="letter btn btn-sm btn-primary">E</button>
+                <button class="letter btn btn-sm btn-primary">F</button>
+                <button class="letter btn btn-sm btn-primary">G</button>
+                <button class="letter btn btn-sm btn-primary">H</button>
+                <button class="letter btn btn-sm btn-primary">I</button>
+                <button class="letter btn btn-sm btn-primary">J</button>
+                <button class="letter btn btn-sm btn-primary">K</button>
+                <button class="letter btn btn-sm btn-primary">L</button>
+                <button class="letter btn btn-sm btn-primary">M</button>
+                <button class="letter btn btn-sm btn-primary">N</button>
+                <button class="letter btn btn-sm btn-primary">O</button>
+                <button class="letter btn btn-sm btn-primary">P</button>
+                <button class="letter btn btn-sm btn-primary">Q</button>
+                <button class="letter btn btn-sm btn-primary">R</button>
+                <button class="letter btn btn-sm btn-primary">S</button>
+                <button class="letter btn btn-sm btn-primary">T</button>
+                <button class="letter btn btn-sm btn-primary">U</button>
+                <button class="letter btn btn-sm btn-primary">V</button>
+                <button class="letter btn btn-sm btn-primary">W</button>
+                <button class="letter btn btn-sm btn-primary">X</button>
+                <button class="letter btn btn-sm btn-primary">Y</button>
+                <button class="letter btn btn-sm btn-primary">Z</button>
+            </div>
+            <div class="row">
+                <button id="resetBtn" class="btn btn-danger">Reset</button>
+            </div>
+            <div class="row">
+                <img src="" alt="" id="graphic" class="img-fluid">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="app.js"></script>
+</html>
