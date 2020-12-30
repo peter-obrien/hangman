@@ -1,3 +1,7 @@
-/*.guessMode {*/
-/*    display: none;*/
-/*}*/
+.unknownLetterContainer {
+    width: 2.5em;
+}
+
+.letter {
+    width: 2em;
+}

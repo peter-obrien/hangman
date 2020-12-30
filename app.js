@@ -9,7 +9,7 @@ wordForm.addEventListener('submit', evt => {
     evt.preventDefault()
     let enteredWord = wordToGuess.value
     for (let i = 0; i < enteredWord.length; i++) {
-        let letterHtml = `<div class="col-"><input type="text" class="unknownLetter placeholder${i} form-control" disabled></div>`
+        let letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="unknownLetter placeholder${i} form-control" disabled maxlength="1"></div>`
         wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
     }
     guessMode.classList.remove('d-none')
