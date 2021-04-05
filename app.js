@@ -3,6 +3,7 @@ const wordForm = document.querySelector('#wordForm')
 const reset = document.querySelector('#resetBtn')
 const guessMode = document.querySelector('#guessMode')
 const wordContainer = document.querySelector('#wordContainer')
+const playersList = document.querySelector('#playersList')
 const maxGuesses = 11
 let incorrectGuesses = 0
 wordForm.addEventListener('submit', evt => {
@@ -11,6 +12,10 @@ wordForm.addEventListener('submit', evt => {
     for (let i = 0; i < enteredWord.length; i++) {
         let letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="unknownLetter placeholder${i} form-control" disabled maxlength="1"></div>`
         wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
+    }
+    let players = getPlayers()
+    if (players) {
+        playersList.innerHTML += players.join(' | ')
     }
     guessMode.classList.remove('d-none')
     wordForm.classList.toggle('d-none')
@@ -77,4 +82,12 @@ function isGameOver() {
 
 function updateGraphic() {
     document.querySelector('#graphic').setAttribute('src', `./images/${incorrectGuesses}.png`)
+}
+
+function getPlayers() {
+    let searchParams = new URLSearchParams(window.location.search)
+    if (searchParams.has('players')) {
+        return searchParams.get('players').split(',')
+    }
+    return null
 }
