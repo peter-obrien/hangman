@@ -8,9 +8,14 @@ const maxGuesses = 11
 let incorrectGuesses = 0
 wordForm.addEventListener('submit', evt => {
     evt.preventDefault()
-    let enteredWord = wordToGuess.value
+    const enteredWord = wordToGuess.value.trim()
     for (let i = 0; i < enteredWord.length; i++) {
-        let letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="unknownLetter placeholder${i} form-control" disabled maxlength="1"></div>`
+        let letterHtml = ''
+        if (enteredWord.charAt(i) === ' ') {
+            letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="spaceLetter placeholder${i} form-control" disabled maxlength="1"></div>`
+        } else {
+            letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="unknownLetter placeholder${i} form-control" disabled maxlength="1"></div>`
+        }
         wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
     }
     let players = getPlayers()
@@ -57,7 +62,7 @@ function handleGuess(evt) {
 
 function validateLetter(letter) {
     let result = false
-    const enteredWord = wordToGuess.value.toUpperCase()
+    const enteredWord = wordToGuess.value.trim().toUpperCase()
     for (let i = 0; i < enteredWord.length; i++) {
         if (enteredWord.charAt(i) === letter) {
             result = true
