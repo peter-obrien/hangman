@@ -32,11 +32,13 @@ for (const letterButton of letterButtons) {
     letterButton.addEventListener('click', handleGuess)
 }
 
-function resetGame() {
+function resetGame(evt) {
+    evt.preventDefault()
     guessMode.classList.add('d-none')
     wordToGuess.value = ''
     wordForm.classList.toggle('d-none')
     wordContainer.innerHTML = ''
+    playersList.innerHTML = ''
     incorrectGuesses = 0
     for (const letterButton of letterButtons) {
         letterButton.disabled = false
