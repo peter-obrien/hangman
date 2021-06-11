@@ -51,11 +51,11 @@ function handleGuess(evt) {
         updateGraphic()
     }
     if (isGameWon()) {
-        alert("Winner!")
+        alert(`Winner!\n\nThe answer was "${wordToGuess.value}".`)
         resetGame()
     }
     if (isGameOver()) {
-        alert("Game Over!")
+        alert(`Game Over!\n\nThe answer was "${wordToGuess.value}".`)
         resetGame()
     }
 }
