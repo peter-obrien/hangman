@@ -1,3 +1,16 @@
+import img00 from './images/0.png'
+import img01 from './images/1.png'
+import img02 from './images/2.png'
+import img03 from './images/3.png'
+import img04 from './images/4.png'
+import img05 from './images/5.png'
+import img06 from './images/6.png'
+import img07 from './images/7.png'
+import img08 from './images/8.png'
+import img09 from './images/9.png'
+import img10 from './images/10.png'
+import img11 from './images/11.png'
+const images = [img00, img01, img02, img03, img04, img05, img06, img07, img08, img09, img10, img11]
 const wordToGuess = document.querySelector('#wordToGuess')
 const wordForm = document.querySelector('#wordForm')
 const reset = document.querySelector('#resetBtn')
@@ -6,25 +19,30 @@ const wordContainer = document.querySelector('#wordContainer')
 const playersList = document.querySelector('#playersList')
 const maxGuesses = 11
 let incorrectGuesses = 0
-wordForm.addEventListener('submit', evt => {
-    evt.preventDefault()
-    const enteredWord = wordToGuess.value.trim()
-    for (let i = 0; i < enteredWord.length; i++) {
-        let letterHtml = ''
-        if (enteredWord.charAt(i) === ' ') {
-            letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="spaceLetter placeholder${i} form-control" disabled maxlength="1"></div>`
-        } else {
-            letterHtml = `<div class="unknownLetterContainer mx-1"><input type="text" class="unknownLetter placeholder${i} form-control" disabled maxlength="1"></div>`
+wordForm.addEventListener('keypress', evt => {
+    if (evt.key === 'Enter') {
+        evt.preventDefault()
+        const enteredWord = wordToGuess.value.trim()
+        for (let i = 0; i < enteredWord.length; i++) {
+            let letterHtml = ''
+            if (enteredWord.charAt(i) === ' ') {
+                letterHtml = `<input type="text" class="spaceLetter placeholder${i} w-12 h-12 text-center opacity-0" disabled maxlength="1">`
+            } else {
+                letterHtml = `<input type="text" class="unknownLetter placeholder${i} w-12 h-12 text-center bg-gray-200 border border-gray-300 rounded" disabled>`
+            }
+            wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
         }
-        wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
+        let players = getPlayers()
+        if (players) {
+            playersList.classList.remove('hidden')
+            playersList.innerHTML += players.join(' | ')
+        } else {
+            playersList.classList.add('hidden')
+        }
+        guessMode.classList.remove('hidden')
+        wordForm.classList.toggle('hidden')
+        updateGraphic()
     }
-    let players = getPlayers()
-    if (players) {
-        playersList.innerHTML += players.join(' | ')
-    }
-    guessMode.classList.remove('d-none')
-    wordForm.classList.toggle('d-none')
-    updateGraphic()
 })
 reset.addEventListener('click', resetGame)
 let letterButtons = document.querySelectorAll('.letter')
@@ -34,9 +52,9 @@ for (const letterButton of letterButtons) {
 
 function resetGame(evt) {
     evt.preventDefault()
-    guessMode.classList.add('d-none')
+    guessMode.classList.add('hidden')
     wordToGuess.value = ''
-    wordForm.classList.toggle('d-none')
+    wordForm.classList.toggle('hidden')
     wordContainer.innerHTML = ''
     playersList.innerHTML = ''
     incorrectGuesses = 0
@@ -88,7 +106,7 @@ function isGameOver() {
 }
 
 function updateGraphic() {
-    document.querySelector('#graphic').setAttribute('src', `./images/${incorrectGuesses}.png`)
+    document.querySelector('#graphic').setAttribute('src', `${images[incorrectGuesses]}`)
 }
 
 function getPlayers() {

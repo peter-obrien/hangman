@@ -1,12 +1,9 @@
-.unknownLetterContainer {
-    width: 2.5em;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.spaceLetter {
-    border: none !important;
-    background-color: rgba(0,0,0,0) !important;
-}
-
-.letter {
-    width: 2em;
+@layer components {
+    .btn-primary {
+        @apply w-10 h-10 text-center bg-purple-600 rounded text-white hover:bg-purple-700 active:bg-purple-800 disabled:opacity-50
+    }
 }
