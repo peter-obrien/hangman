@@ -19,16 +19,20 @@ const wordContainer = document.querySelector('#wordContainer')
 const playersList = document.querySelector('#playersList')
 const maxGuesses = 11
 let incorrectGuesses = 0
+const regex = new RegExp('[A-Z]')
 wordForm.addEventListener('keypress', evt => {
     if (evt.key === 'Enter') {
         evt.preventDefault()
-        const enteredWord = wordToGuess.value.trim()
+        const enteredWord = wordToGuess.value.toUpperCase().trim()
         for (let i = 0; i < enteredWord.length; i++) {
+            const theChar = enteredWord.charAt(i)
             let letterHtml = ''
-            if (enteredWord.charAt(i) === ' ') {
+            if (regex.test(theChar)) {
+                letterHtml = `<input type="text" class="unknownLetter placeholder${i} w-12 h-12 text-center bg-gray-200 border border-gray-300 rounded" disabled>`
+            } else if (theChar === ' ') {
                 letterHtml = `<input type="text" class="spaceLetter placeholder${i} w-12 h-12 text-center opacity-0" disabled maxlength="1">`
             } else {
-                letterHtml = `<input type="text" class="unknownLetter placeholder${i} w-12 h-12 text-center bg-gray-200 border border-gray-300 rounded" disabled>`
+                letterHtml = `<input type="text" class="spaceLetter placeholder${i} w-12 h-12 text-center bg-gray-200 border border-gray-300 rounded" value="${theChar}" disabled>`
             }
             wordContainer.innerHTML = wordContainer.innerHTML + letterHtml
         }
