@@ -76,11 +76,11 @@ function handleGuess(evt) {
     }
     if (isGameWon()) {
         alert(`Winner!\n\nThe answer was "${wordToGuess.value}".`)
-        resetGame()
+        resetGame(evt)
     }
     if (isGameOver()) {
         alert(`Game Over!\n\nThe answer was "${wordToGuess.value}".`)
-        resetGame()
+        resetGame(evt)
     }
 }
 
